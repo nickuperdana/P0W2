@@ -32,10 +32,20 @@ ROLLBACK TO insert_samuel_to_instructors;
 INSERT INTO instructors(name, gender, age)
 VALUES ('Bitha', 'Female', 25); -- ini cuma berlaku di dalam transaksi ini
 
--- Membatalkan seluruh transaksi, akhir dari transaksi
-ROLLBACK;
--- COMMIT; setujui seluruh transaksi
--- ROLLBACK; batalkan seluruh transaksi
+RELEASE SAVEPOINT insert_samuel_to_instructors;
+SAVEPOINT insert_bitha;
+
+-- Kalau rollback ke savepoint yang sudah di-release, transaksi akan error dan tidak bisa dilanjutkan
+-- solusi, rollback to the active savepoint post-release
+ROLLBACK TO insert_samuel_to_instructors;
+
+ROLLBACK TO insert_bitha;
 
 SELECT *
 FROM instructors;
+
+-- Membatalkan seluruh transaksi, akhir dari transaksi
+COMMIT;
+-- COMMIT; setujui seluruh transaksi
+-- ROLLBACK; batalkan seluruh transaksi
+
