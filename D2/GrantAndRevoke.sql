@@ -35,7 +35,11 @@ FROM instructors;
 -- merevoke akses __(INSERT, SELECT)__ atas database __(buddies)__ milik user nicku_perdana
 REVOKE INSERT, SELECT ON buddies FROM nicku_perdana;
 
--- Melihat user saat ini
+-- ketika melakukan script line27-28, akan keluar pesan error karena akses untuk INSERT dan SELECT atas tabel 'buddies' telah di-revoke
+
+-- tetapi, ketika melakukan script di line 30-31, akan masih berlaku karena INSERT dan SELECT masih berlaku untuk tabel ''
+
+-- Melihat daftar user saat ini
 SELECT current_user;
 
 -- Melihat semua user saat ini

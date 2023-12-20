@@ -1,6 +1,3 @@
--- Create database of 'w2d2ngc5' 
-CREATE DATABASE w2d2ngc5;
-
 -- create table customer
 CREATE TABLE IF NOT EXISTS Customer(
     customer_id SERIAL PRIMARY KEY,
@@ -36,7 +33,16 @@ VALUES
     (1, '2022-02-15', 150.00),
     (2, '2022-03-20', 200.00),
     (3, '2022-04-25', 50.00);
+	
+SELECT *
+FROM Customer;
 
--- test the input above
 SELECT *
 FROM Orders;
+
+SELECT
+	customer_name,
+	COUNT(ord.customer_id)
+FROM customer cust
+JOIN orders ord ON cust.customer_id = ord.customer_id
+GROUP BY customer_name;
