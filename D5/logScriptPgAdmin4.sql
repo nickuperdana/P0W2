@@ -1,3 +1,5 @@
+-- database w2d5
+
 SELECT * FROM teams;
 
 SELECT * FROM players;
@@ -49,7 +51,7 @@ FROM (
 	SELECT
 		teams.conference AS conference,
 		players.year,
-		COUNT(1) AS players
+		COUNT(1) AS players -- 1 = urutan pertama teams.conference
 	FROM players players
 	JOIN teams ON teams.school_name = players.school_name
 	GROUP BY 1,2
